@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Educational Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            padding-top: 80px;
+        }
+
+        /* Top Navigation Header */
+        header {
+            background-color: #1e3d59;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            color: #ffc13b;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Navigation Labels (Pure CSS - No JavaScript Required) */
+        .tab-label {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f5f5f5;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .tab-label:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hide Radio Inputs */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Hide All Tab Contents by Default */
+        .tab-content {
+            display: none;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid #1e3d59;
+        }
+
+        /* Handle CSS Tab Switching & Active Button Highlighting */
+        #tab-home:checked ~ header .tab-label[for="tab-home"],
+        #tab-l1:checked ~ header .tab-label[for="tab-l1"],
+        #tab-l2:checked ~ header .tab-label[for="tab-l2"],
+        #tab-l3:checked ~ header .tab-label[for="tab-l3"],
+        #tab-l4:checked ~ header .tab-label[for="tab-l4"] {
+            background-color: #ffc13b;
+            color: #1e3d59;
+            font-weight: bold;
+        }
+
+        #tab-home:checked ~ .container #content-home,
+        #tab-l1:checked ~ .container #content-l1,
+        #tab-l2:checked ~ .container #content-l2,
+        #tab-l3:checked ~ .container #content-l3,
+        #tab-l4:checked ~ .container #content-l4 {
+            display: block;
+        }
+
+        .lesson-tag {
+            background-color: #ffc13b;
+            color: #1e3d59;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #1e3d59;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #1e3d59;
+            border-bottom: 2px solid #ffc13b;
+            padding-bottom: 5px;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Formula Box Styling */
+        .formula-box {
+            background-color: #f8f9fa;
+            border: 2px dashed #1e3d59;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        /* Green Highlight Definition Boxes */
+        .definition-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .definition-box strong {
+            color: #1b5e20;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .definition-box .eng-text {
+            font-weight: 600;
+            color: #111;
+        }
+
+        /* Red Highlight Info Boxes */
+        .info-box {
+            background-color: #fff5f5;
+            border-left: 5px solid #e53e3e;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hidden CSS Tab Controls -->
+    <input type="radio" id="tab-home" name="physics-tabs" checked>
+    <input type="radio" id="tab-l1" name="physics-tabs">
+    <input type="radio" id="tab-l2" name="physics-tabs">
+    <input type="radio" id="tab-l3" name="physics-tabs">
+    <input type="radio" id="tab-l4" name="physics-tabs">
+
+    <!-- Top Navigation Header -->
+    <header>
+        <nav>
+            <span class="logo">Physics Portal ⚛️</span>
+            <div class="nav-links">
+                <label for="tab-home" class="tab-label">Home</label>
+                <label for="tab-l1" class="tab-label">Lesson 1</label>
+                <label for="tab-l2" class="tab-label">Lesson 2</label>
+                <label for="tab-l3" class="tab-label">Lesson 3</label>
+                <label for="tab-l4" class="tab-label">Lesson 4</label>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+
+        <!-- Tab 1: Home -->
+        <div id="content-home" class="tab-content">
+            <h2>Welcome to Physics Educational Portal</h2>
+            <p>Click on the lesson tabs above (Lesson 1 to Lesson 4) to navigate through the topics seamlessly.</p>
+        </div>
+
+        <!-- Tab 2: Lesson 1 -->
+        <div id="content-l1" class="tab-content">
+            <span class="lesson-tag">Lesson 1</span>
+            <h2>Newton's Laws of Motion</h2>
+            <p>Content for Lesson 1 will be added here...</p>
+        </div>
+
+        <!-- Tab 3: Lesson 2 -->
+        <div id="content-l2" class="tab-content">
+            <span class="lesson-tag">Lesson 2</span>
+            <h2>Electric Current and Ohm's Law</h2>
+            <p>Content for Lesson 2 will be added here...</p>
+        </div>
+
+        <!-- Tab 4: Lesson 3 -->
+        <div id="content-l3" class="tab-content">
+            <span class="lesson-tag">Lesson 3</span>
+            <h2>Properties of Light and Waves</h2>
+            <p>Content for Lesson 3 will be added here...</p>
+        </div>
+
+        <!-- Tab 5: Lesson 4 (Mass and Weight Definitions & Main Box) -->
+        <div id="content-l4" class="tab-content">
+            <span class="lesson-tag">Lesson 4</span>
+            <h2>Lesson 4: Mass and Weight measurements</h2>
+            
+            <!-- 1. Mass Definitions -->
+            <h3>Meaning of Mass (m)</h3>
+            
+            <div class="definition-box">
+                <strong>In our daily life:</strong>
+                <p class="eng-text">1) Mass is the quantity of matter in a physical body.</p>
+            </div>
+
+            <div class="definition-box">
+                <strong>In physics:</strong>
+                <p class="eng-text">2) Mass is the Resistance of object to change its Kinematic state.</p>
+            </div>
+
+            <!-- 2. Weight Definitions -->
+            <h3>Meaning of Weight</h3>
+            
+            <div class="definition-box">
+                <strong>In our daily life:</strong>
+                <p class="eng-text">1) Weight is the measure of the heaviness of an object.</p>
+            </div>
+
+            <div class="definition-box">
+                <strong>In physics:</strong>
+                <p class="eng-text">2) Weight is the force of gravity acting on the object OR is the force with which a body is pulled towards the earth.</p>
+                <p style="margin-top: 8px; font-size:14px; font-weight: bold; color: #c62828;">• Its direction is towards the Earth's center.</p>
+            </div>
+
+            <!-- 3. Mathematical Formula -->
+            <h3>The Equation</h3>
+            <div class="formula-box">
+                <h3 style="font-size: 32px; color: #e53e3e; margin: 0 0 10px 0; border: none; padding: 0;">F<sub>g</sub> = m × g</h3>
+                <p style="font-weight: bold; color: #1e3d59; margin-bottom: 10px;">Symbols Meanings:</p>
+                <p><strong>F<sub>g</sub></strong> : Weight (Force of gravity)</p>
+                <p><strong>m</strong> : Mass of the object</p>
+                <p><strong>g</strong> : Acceleration due to gravity or acceleration of free fall</p>
+            </div>
+
+            <!-- 4. Important Concepts (From the Big Red Box in the image) -->
+            <h3>Key Concepts</h3>
+            <div class="info-box">
+                <p style="font-weight: 600; color: #1a202c; margin-bottom: 12px; text-align: left;">
+                    1) Mass and weight are related: Bodies having large mass also have large weight. A large stone is hard to throw because of its large mass, and hard to lift off the ground because of its large weight hence the magnitude (F<sub>g</sub>) of a body's weight is directly proportional to its mass (m).
+                </p>
+                <p style="font-weight: 600; color: #1a202c; text-align: left;">
+                    2) In fact, the value of g varies somewhat from point to point on the earth's surface because the earth is not perfectly spherical and because of effects due to its rotation and orbital motion. Also the weight of a body varies from one location to another; the mass does not.
+                </p>
+            </div>
+
+            <!-- 5. Measuring Units (Red Highlighted Row at the bottom) -->
+            <h3>Measuring unit of Mass and Weight</h3>
+            <div class="info-box">
+                <p style="font-weight: 600; color: #1a202c; margin-bottom: 5px;">• Mass is measured in Kilogram (kg).</p>
+                <p style="font-weight: 600; color: #1a202c;">• Weight is a vector quantity measured in Newton (N).</p>
+            </div>
+            <!-- Start of Mass and Weight Comparison Table -->
+<table class="comparison-table">
+    <thead>
+        <tr>
+            <th>Mass</th>
+            <th>Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>A basic quantity</td>
+            <td>A derived quantity</td>
+        </tr>
+        <tr>
+            <td>does not change from place to place</td>
+            <td>changes from one place to another according to the acceleration due to gravity</td>
+        </tr>
+        <tr>
+            <td>m</td>
+            <td>F<sub>g</sub></td>
+        </tr>
+        <tr>
+            <td>Kilogram (kg)</td>
+            <td>Newton (N)</td>
+        </tr>
+        <tr>
+            <td>measured by a beam balance or digital balance</td>
+            <td>measured by the spring balance</td>
+        </tr>
+        <!-- Handwritten Notes from the image -->
+        <tr>
+            <td class="handwritten-row">Scalar Quantity<br><span style="font-size: 14px; font-weight: normal; color: #4a5568;">magnitude only</span></td>
+            <td class="handwritten-row">Vector Quantity<br><span style="font-size: 14px; font-weight: normal; color: #4a5568;">magnitude + direction</span></td>
+        </tr>
+    </tbody>
+</table>
+<!-- End of Table -->
